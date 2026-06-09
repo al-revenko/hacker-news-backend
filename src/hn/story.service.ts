@@ -53,11 +53,12 @@ export class StoryService {
     return {
       id: raw.id,
       type: raw.type,
-      by: raw.by,
+      user: raw.by,
       url: raw.url ?? null,
       score: raw.score,
       title: raw.title,
       commentsCount: raw.descendants,
+      time: raw.time,
     };
   }
 }

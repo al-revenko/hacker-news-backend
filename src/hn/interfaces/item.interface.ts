@@ -7,20 +7,22 @@ export interface Item {
 
 export interface StoryItem extends Item {
   type: ItemType.Story;
-  by: string;
+  user: string;
   url: string | null;
   score: number;
   title: string;
   commentsCount: number;
+  time: number;
 }
 
 export interface CommentItem extends Item {
   type: ItemType.Comment;
-  by: string;
+  user: string;
   parent: number | null;
   text: string;
   kids: CommentItem[];
   kidsCount: number;
+  time: number;
 }
 
 export interface RawStoryItem {

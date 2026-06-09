@@ -80,11 +80,12 @@ export class CommentService {
     return {
       id: raw.id,
       type: raw.type,
-      by: raw.by,
+      user: raw.by,
       parent: raw.parent,
       text: raw.text,
       kids: [],
       kidsCount: raw.kids?.length ?? 0,
+      time: raw.time,
     };
   }
 }
