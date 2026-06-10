@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { HnModule } from './hn/hn.module';
+import { HnModule } from './modules/hn/hn.module';
 
 @Module({
   imports: [HnModule],

@@ -12,6 +12,7 @@ export interface StoryItem extends Item {
   score: number;
   title: string;
   commentsCount: number;
+  commentsId: number[];
   time: number;
 }
 
@@ -20,8 +21,8 @@ export interface CommentItem extends Item {
   user: string;
   parent: number | null;
   text: string;
-  kids: CommentItem[];
-  kidsCount: number;
+  kidsId: number[];
+  descendantsCount: number;
   time: number;
 }
 

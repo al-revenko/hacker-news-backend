@@ -8,7 +8,6 @@ import {
 import { StoryService } from './story.service';
 import { CommentService } from './comment.service';
 import { PaginationDto } from './dto/pagination.dto';
-import { DepthDto } from './dto/depth.dto';
 
 @Controller('hn')
 export class HnController {
@@ -43,20 +42,12 @@ export class HnController {
     return this.storyService.getStoryById(storyId);
   }
 
-  @Get('story/:id/comments')
-  async getStoryComments(@Param('id') id: string, @Query() query: DepthDto) {
-    const storyId = this.parseAndValidateId(id, 'story');
-    const comments = await this.commentService.getCommentsForStory(
-      storyId,
-      query.depth ?? 0,
-    );
-    return comments;
-  }
-
-  @Get('comment/:id')
-  async getComment(@Param('id') id: string, @Query() query: DepthDto) {
-    const commentId = this.parseAndValidateId(id, 'comment');
-    return this.commentService.getCommentById(commentId, query.depth ?? 0);
+  @Get('comment')
+  async getComments(@Query('id') ids: number[]) {
+    if (!ids || ids.length === 0) {
+      throw new BadRequestException('Query param "id" is required');
+    }
+    return this.commentService.getCommentsByIds(ids);
   }
 
   private parseAndValidateId(id: string, type: string): number {

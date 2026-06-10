@@ -58,6 +58,7 @@ export class StoryService {
       score: raw.score,
       title: raw.title,
       commentsCount: raw.descendants,
+      commentsId: raw.kids ?? [],
       time: raw.time,
     };
   }
