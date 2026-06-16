@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { StoryItem, RawStoryItem } from './interfaces';
-import { isRawStory } from './hn.guard';
-import { fetchFromHn, fetchItemFromHn } from './hn.utils';
+import { StoryItem, RawStoryItem } from './types';
+import { fetchFromHn, fetchItemFromHn, isRawStory } from './hn.utils';
 
 @Injectable()
 export class StoryService {

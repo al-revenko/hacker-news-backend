@@ -4,8 +4,8 @@ import {
   BadRequestException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { HN_API_BASE } from './hn.const';
-import { RawItem } from './interfaces';
+import { HN_API_BASE, ItemType } from './hn.const';
+import { RawCommentItem, RawItem, RawStoryItem } from './types';
 
 export async function fetchFromHn<T>(path: string): Promise<T> {
   let response: Response;
@@ -50,4 +50,16 @@ export async function fetchItemFromHn(id: number): Promise<RawItem> {
   }
 
   return item;
+}
+
+export function isRawItem(item: unknown): item is RawItem {
+  return item !== null && typeof (item as RawItem).type === 'string';
+}
+
+export function isRawComment(item: unknown): item is RawCommentItem {
+  return isRawItem(item) && item.type === ItemType.Comment;
+}
+
+export function isRawStory(item: unknown): item is RawStoryItem {
+  return isRawItem(item) && item.type === ItemType.Story;
 }
